@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "libreERP Marketing",
+    "slug": "libreERP-Marketing",
+    "privacy": "public",
+    "sdkVersion": "34.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "",
+    "splash": {
+      "image": "",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier":"com.cioc.libreERPMarketing"
+    },
+    "android": {
+      "versionCode":1,
+      "package": "com.cioc.libreERPMarketing"
+    }
+  }
+}
