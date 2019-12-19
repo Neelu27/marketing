@@ -12,17 +12,18 @@ import TimelineCard from '../components/TimelineCard';
 import CampaingnItem from '../screens/CampaingnItem';
 import CampaingnItemExplore from '../screens/CampaingnItemExplore';
 import CampaingnItemTimeLine from '../components/CampaingnItemTimeLine';
+import NewCampaign from '../screens/NewCampaign';
+import FlatlistSelect from '../components/FlatlistSelect';
+import CameraScreen from '../screens/CameraScreen';
+// import Country from'../screens/Country';
 // const initialNavigator = createStackNavigator(
 //   {
 //     Home: HomeScreen,
 //     Detail: DetailsScreen,
-//
 //   },
 //   {
 //     initialRouteName: "Home"
 //   });
-//
-//
 // export default initialNavigator;
 const HomeStack = createStackNavigator({
     Home: {
@@ -77,7 +78,11 @@ const navigate = createStackNavigator({
      TimelineCard,
      CampaingnItem,
      CampaingnItemExplore,
-     CampaingnItemTimeLine
+     CampaingnItemTimeLine,
+     NewCampaign,
+     FlatlistSelect,
+     CameraScreen,
+     // Country,
 },
 
 { initialRouteName:'DefaultScreen' });

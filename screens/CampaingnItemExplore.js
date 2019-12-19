@@ -92,9 +92,9 @@ export default class CampaingnItemExplore extends Component {
               this[`menu${mobile,directNumber,altNumber,altNumber2}`].show();
         };
 
-       openLink=async(item)=>{
+        openLink=async(item)=>{
              await WebBrowser.openBrowserAsync(item);
-       }
+        }
 
 
 
@@ -543,24 +543,7 @@ export default class CampaingnItemExplore extends Component {
         return (
             <View style={{flex:1,marginBottom:0}}>
 
-              <Modal
-                      style={[styles.modalView,{marginBottom:100}]}
-                      position={'center'}
-                      ref={'modal3'}
-                      isOpen={this.state.modalVisible}
-                      onClosed={()=>{
-                        this.setState({modalVisible:false})
-                       }}
-                       >
-                      <View style={[{paddingVertical:15,paddingHorizontal:10,borderWidth:1,marginBottom:0,backgroundColor:'#ffffff'}]}>
-                                    <Text>about</Text>
-                            <View style={{}}>
-                                <TouchableOpacity onPress={()=>{this.setState({modalVisible:false})}}>
-                                    <Text  style={{fontSize:16,color:'#000',fontWeight:'600',backgroundColor: "#1b3f4d",paddingVertical:3,paddingHorizontal: 8,alignSelf:'center',marginTop:15,borderRadius:3}}>Close</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-              </Modal>
+
 
                 <View style={{height:Constants.statusBarHeight,backgroundColor:'#1a689a'}}></View>
                 <View style={{backgroundColor: '#ffffff',}}>
@@ -603,7 +586,7 @@ export default class CampaingnItemExplore extends Component {
                 </View>
                 <View style={{flex:1,backgroundColor:'#d4e2f0',marginBottom: this.state.keyboardOpen?this.state.keyboardHeight:0}}>
                        <ScrollView style={{paddingBottom:80}}>
-                                <CampaingnItemTimeLine navigation={this.props.navigation}/>
+                                <CampaingnItemTimeLine navigation={this.props.navigation} render={campaign.item.contact.pk}/>
                             <View style={{height:80}}></View>
                        </ScrollView>
                        <View style={{justifyContent:'space-between',backgroundColor:'#ffffff',paddingVertical:0,width:width*0.88,}}>
@@ -692,68 +675,21 @@ const styles=StyleSheet.create({
 });
 
 
-// {!this.state.keyboardOpen&&
-//        <TouchableOpacity
-//              activeOpacity={0.7}
-//              onPress={()=>this.setState({isOpen:true})}
-//              style={{ position: 'absolute',
-//                       width: 45,
-//                       height: 45,
-//                       alignItems: 'center',
-//                       justifyContent: 'center',
-//                       right: 100,
-//                       bottom: 100,
-//                       backgroundColor: '#1a689a',
-//                       zIndex: 1,
-//                       borderRadius:25,}}>
-//              {/* <FontAwesome name="calendar" size={25} color="#fff"  /> */}
-//              <FontAwesome
-//              size={25}
-//              color='#ffffff'
-//              name='calendar'
-//              />
-//          </TouchableOpacity>
-//   }
-
-{/* <Modal
-style={styles.modal3}
-position={'right'}
-ref={'modal3'}
-isOpen={this.state.isOpen2}
-onClosed={()=>{
-this.setState({isOpen2:false})
-}}
->
-<View style={{flexDirection:'row',justifyContent:'space-between',margin:20,paddingTop:10,}}>
-   <Text style={{fontSize:18,alignSelf:'flex-start',marginLeft:10,paddingTop:10}}>Contacts No  </Text>
-   <TouchableOpacity style={{alignSelf:'flex-end',marginRight:10,paddingTop:10}}onPress={()=>this.setState({isOpen2:false})}>
-       <Text style={{fontSize:18,}}>X</Text>
-   </TouchableOpacity>
-</View>
-  <View style={{flexDirection:'column', marginLeft:20,marginRight:20,paddingTop:10}}>
-    {this.state.CampaignExp.contact!=null&&<View style={{flexDirection:'column',}}>
-      {this.state.CampaignExp.contact.contact.mobile!=null&&
-        <View style={{flexDirection:'row'}}>
-             <TouchableOpacity onPress={()=>this.mobile(this.state.CampaignExp.contact.contact.mobile)}>
-             <Text style={{paddingTop:6,paddingBottom:2,fontSize:26,paddingHorizontal:10,width:width*0.5,alignSelf:'flex-start'}}>{this.state.CampaignExp.contact.contact.mobile}</Text></TouchableOpacity>
-        </View>}
-           {this.state.CampaignExp.contact.contact.directNumber!=null&&
-          <View style={{flexDirection:'row'}}>
-                 <TouchableOpacity onPress={()=>this.Dno(this.state.CampaignExp.contact.contact.directNumber)}>
-               <Text style={{paddingTop:6,paddingBottom:2,fontSize:26,paddingHorizontal:10,width:width*0.5,alignSelf:'flex-start'}}>{this.state.CampaignExp.contact.contact.directNumber}</Text></TouchableOpacity>
-          </View>}
-            {this.state.CampaignExp.contact.contact.altNumber!=null&&
-          <View style={{flexDirection:'row'}}>
-
-               <TouchableOpacity onPress={()=>this.altNumber(this.state.CampaignExp.contact.contact.altNumber)}>
-               <Text style={{paddingTop:6,paddingBottom:2,fontSize:26,paddingHorizontal:10,width:width*0.5,alignSelf:'flex-start'}}>{this.state.CampaignExp.contact.contact.altNumber}</Text></TouchableOpacity>
-         </View>}
-          {this.state.CampaignExp.contact.contact.altNumber2!=null&&
-         <View style={{flexDirection:'row'}}>
-
-                 <TouchableOpacity onPress={()=>this.altNumber2(this.state.CampaignExp.contact.contact.altNumber2)}>
-               <Text style={{paddingTop:6,paddingBottom:2,fontSize:26,paddingHorizontal:10,width:width*0.5,alignSelf:'flex-start'}}>{this.state.CampaignExp.contact.contact.altNumber2}</Text></TouchableOpacity>
-         </View>}</View>}
-
-  </View>
-</Modal> */}
+// <Modal
+//         style={[styles.modalView,{marginBottom:100}]}
+//         position={'center'}
+//         ref={'modal3'}
+//         isOpen={this.state.modalVisible}
+//         onClosed={()=>{
+//           this.setState({modalVisible:false})
+//          }}
+//          >
+//         <View style={[{paddingVertical:15,paddingHorizontal:10,borderWidth:1,marginBottom:0,backgroundColor:'#ffffff'}]}>
+//                       <Text>about</Text>
+//               <View style={{}}>
+//                   <TouchableOpacity onPress={()=>{this.setState({modalVisible:false})}}>
+//                       <Text  style={{fontSize:16,color:'#000',fontWeight:'600',backgroundColor: "#1b3f4d",paddingVertical:3,paddingHorizontal: 8,alignSelf:'center',marginTop:15,borderRadius:3}}>Close</Text>
+//                   </TouchableOpacity>
+//               </View>
+//           </View>
+// </Modal>

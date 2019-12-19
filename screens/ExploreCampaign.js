@@ -189,6 +189,9 @@ export default class ExploreCampaign extends Component {
        }
 
        skiped=async()=>{
+             if(this.state.CampaignExp.status=="end"){
+               return
+             }
              var attempt=1;
              var attemptdata=attempt+this.state.CampaignExp.contact.attempt;
              var dataSend ={
@@ -251,6 +254,9 @@ export default class ExploreCampaign extends Component {
        }
 
        Qualify=async()=>{
+             if(this.state.CampaignExp.status=="end"){
+               return
+             }
              var attempt=1;
              var attemptdata=attempt+this.state.CampaignExp.contact.attempt;
              var dataSend ={
@@ -313,6 +319,9 @@ export default class ExploreCampaign extends Component {
        }
 
          makecall=async(mobile,directNumber,altNumber,altNumber2)=>{
+                 if(this.state.CampaignExp.status=="end"){
+                   return
+                 }else{
                  var ContactNumber = []
                  ContactNumber.push({mobile:mobile,directNumber:directNumber,altNumber:altNumber,altNumber2:altNumber2})
                  this.setState({ContactNumber:ContactNumber});
@@ -345,7 +354,7 @@ export default class ExploreCampaign extends Component {
                            console.log(json,'savedjson ');
                                 var dataSend ={
                                 campaign: this.state.CampaignExp.contact.campaign,
-                                contact	:this.state.CampaignExp.contact.contact.pk,
+                                contact	:(this.state.CampaignExp.contact==null?'':this.state.CampaignExp.contact.contact.pk),
                                 typ:'outbound'
                                 }
                                 fetch(SERVER_URL+'/api/marketing/campaignLogs/', {
@@ -442,9 +451,13 @@ export default class ExploreCampaign extends Component {
                   }else{
                     return
                   }
+              }
             }
 
             mobile=async(mobile)=>{
+                if(this.state.CampaignExp.status=="end"){
+                  return
+                }
                 var attempt=1;
                 var attemptdata=attempt+this.state.CampaignExp.contact.attempt;
                 var dataSend ={
@@ -509,6 +522,9 @@ export default class ExploreCampaign extends Component {
             }
 
             Dno=async(number)=>{
+                if(this.state.CampaignExp.status=="end"){
+                  return
+                }
                 var attempt=1;
                 var attemptdata=attempt+this.state.CampaignExp.contact.attempt;
                 var dataSend ={
@@ -573,6 +589,9 @@ export default class ExploreCampaign extends Component {
             }
 
             altNumber=async(number)=>{
+                if(this.state.CampaignExp.status=="end"){
+                  return
+                }
                 var attempt=1;
                 var attemptdata=attempt+this.state.CampaignExp.contact.attempt;
                 var dataSend ={
@@ -638,6 +657,9 @@ export default class ExploreCampaign extends Component {
 
 
             altNumber2=async(number)=>{
+                if(this.state.CampaignExp.status=="end"){
+                  return
+                }
                 var attempt=1;
                 var attemptdata=attempt+this.state.CampaignExp.contact.attempt;
                 var dataSend ={
@@ -701,8 +723,10 @@ export default class ExploreCampaign extends Component {
                     });
             }
 
-
             CallFollowup=async()=>{
+                  if(this.state.CampaignExp.status=="end"){
+                    return
+                  }
                   var dataSend ={
                   campaign:this.state.CampaignExp.contact.campaign,
                   data:this.state.notes,
@@ -768,6 +792,9 @@ export default class ExploreCampaign extends Component {
             }
 
             Save=async()=>{
+                  if(this.state.CampaignExp.status=="end"){
+                    return
+                  }
                   var dataSend ={
                   campaign:this.state.CampaignExp.contact.campaign,
                   data:this.state.inputtext,
@@ -1022,7 +1049,7 @@ export default class ExploreCampaign extends Component {
                    {!this.state.keyboardOpen&&
                           <TouchableOpacity
                                 activeOpacity={0.7}
-                                onPress={()=>{this.makecall(JSON.stringify(this.state.CampaignExp.contact.contact.mobile)
+                                onPress={()=>{this.state.CampaignExp.contact!=null&&this.makecall(JSON.stringify(this.state.CampaignExp.contact.contact.mobile)
                                             ,JSON.stringify(this.state.CampaignExp.contact.contact.directNumber)
                                             ,JSON.stringify(this.state.CampaignExp.contact.contact.altNumber)
                                             ,JSON.stringify(this.state.CampaignExp.contact.contact.altNumber2))}}
@@ -1081,49 +1108,3 @@ const styles=StyleSheet.create({
       backgroundColor:'#ffffff'
     }
 });
-
-
-
-
-{/* <Modal
-style={styles.modal3}
-position={'right'}
-ref={'modal3'}
-isOpen={this.state.isOpen2}
-onClosed={()=>{
-this.setState({isOpen2:false})
-}}
->
-<View style={{flexDirection:'row',justifyContent:'space-between',margin:20,paddingTop:10,}}>
-   <Text style={{fontSize:18,alignSelf:'flex-start',marginLeft:10,paddingTop:10}}>Contacts No  </Text>
-   <TouchableOpacity style={{alignSelf:'flex-end',marginRight:10,paddingTop:10}}onPress={()=>this.setState({isOpen2:false})}>
-       <Text style={{fontSize:18,}}>X</Text>
-   </TouchableOpacity>
-</View>
-  <View style={{flexDirection:'column', marginLeft:20,marginRight:20,paddingTop:10}}>
-    {this.state.CampaignExp.contact!=null&&<View style={{flexDirection:'column',}}>
-      {this.state.CampaignExp.contact.contact.mobile!=null&&
-        <View style={{flexDirection:'row'}}>
-             <TouchableOpacity onPress={()=>this.mobile(this.state.CampaignExp.contact.contact.mobile)}>
-             <Text style={{paddingTop:6,paddingBottom:2,fontSize:26,paddingHorizontal:10,width:width*0.5,alignSelf:'flex-start'}}>{this.state.CampaignExp.contact.contact.mobile}</Text></TouchableOpacity>
-        </View>}
-           {this.state.CampaignExp.contact.contact.directNumber!=null&&
-          <View style={{flexDirection:'row'}}>
-                 <TouchableOpacity onPress={()=>this.Dno(this.state.CampaignExp.contact.contact.directNumber)}>
-               <Text style={{paddingTop:6,paddingBottom:2,fontSize:26,paddingHorizontal:10,width:width*0.5,alignSelf:'flex-start'}}>{this.state.CampaignExp.contact.contact.directNumber}</Text></TouchableOpacity>
-          </View>}
-            {this.state.CampaignExp.contact.contact.altNumber!=null&&
-          <View style={{flexDirection:'row'}}>
-
-               <TouchableOpacity onPress={()=>this.altNumber(this.state.CampaignExp.contact.contact.altNumber)}>
-               <Text style={{paddingTop:6,paddingBottom:2,fontSize:26,paddingHorizontal:10,width:width*0.5,alignSelf:'flex-start'}}>{this.state.CampaignExp.contact.contact.altNumber}</Text></TouchableOpacity>
-         </View>}
-          {this.state.CampaignExp.contact.contact.altNumber2!=null&&
-         <View style={{flexDirection:'row'}}>
-
-                 <TouchableOpacity onPress={()=>this.altNumber2(this.state.CampaignExp.contact.contact.altNumber2)}>
-               <Text style={{paddingTop:6,paddingBottom:2,fontSize:26,paddingHorizontal:10,width:width*0.5,alignSelf:'flex-start'}}>{this.state.CampaignExp.contact.contact.altNumber2}</Text></TouchableOpacity>
-         </View>}</View>}
-
-  </View>
-</Modal> */}

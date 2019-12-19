@@ -22,6 +22,7 @@ export default class CampaingnItemTimeLine extends Component {
       constructor(props){
           super(props);
           this.state={
+            item:this.props.render,
               isHorizontal:true,
               scrollX: new Animated.Value(0),
               list:[{first_name:'Admin',last_name:'CIOC',created:new Date(),duration:'10 min',notes:'meeting ',typ:'call',data:'gfghjghgfhjf',doc:'www.cioc.in'},
@@ -35,15 +36,7 @@ export default class CampaingnItemTimeLine extends Component {
           }
       }
 
-    // openDoc = async (item) => {
-    //      // Linking.openURL(item.doc);
-    //      await WebBrowser.openBrowserAsync(item.doc);
-    //      // <WebView
-    //      //   source={{uri:item.doc}}
-    //      //   style={{marginTop: 20}}
-    //      // />
-    //   }
-    //
+
       getuser=async()=>{
           const SERVER_URL=await AsyncStorage.getItem('SERVER_URL');
           const sessionid = await AsyncStorage.getItem('sessionid');
@@ -68,32 +61,7 @@ export default class CampaingnItemTimeLine extends Component {
                console.log(this.state.CampaignUser,"this.state.CampaignUser")
            })
       }
-    //
-    //   getCampaignEX =async() => {
-    //          const campaignpk= await AsyncStorage.getItem('campaignpk');
-    //          const SERVER_URL=await AsyncStorage.getItem('SERVER_URL');
-    //          const sessionid = await AsyncStorage.getItem('sessionid');
-    //          const csrf = await AsyncStorage.getItem('csrf');
-    //           fetch(SERVER_URL+'/api/marketing/getNextEntry/?id='+campaignpk, {
-    //             method: 'GET',
-    //             headers: {
-    //              "Cookie" :"csrf="+csrf+";sessionid=" + sessionid +";",
-    //              'Accept': 'application/json',
-    //              'Content-Type': 'application/json',
-    //              'X-CSRFToken':csrf,
-    //              'Referer': SERVER_URL
-    //             }
-    //           }).then((response) =>{
-    //             console.log(response,"CampaignExLogspresponse")
-    //             if(response.status == '200'){
-    //              return response.json()
-    //             }
-    //           }).then((json) => {
-    //               this.setState({ CampaignExp: json});
-    //               console.log(this.state.CampaignExp,"this.state.CampaignExpLogs")
-    //           })
-    //      }
-    //
+
       componentDidMount=async()=>{
           this.getCampaignData();
           this.getuser();
@@ -112,13 +80,14 @@ export default class CampaingnItemTimeLine extends Component {
     }
 
     getCampaignData=async()=>{
+          console.log(this.state.item,"this.state.item");
           const campaignitempk= await AsyncStorage.getItem('campaignitempk');
           const SERVER_URL = await AsyncStorage.getItem('SERVER_URL');
           const sessionid = await AsyncStorage.getItem('sessionid');
           const csrf = await AsyncStorage.getItem('csrf');
           this.setState({SERVER_URL:SERVER_URL,sessionid:sessionid,csrf:csrf});
           console.log(SERVER_URL,'rrrrrrrrrr');
-            await fetch(SERVER_URL+'/api/marketing/campaignLogs/?contact='+7,{
+            await fetch(SERVER_URL+'/api/marketing/campaignLogs/?contact='+this.state.item,{
               method:'GET',
               headers: {
                  "Cookie" :"csrf="+csrf+";"+"sessionid=" + sessionid +";",
@@ -234,32 +203,31 @@ export default class CampaingnItemTimeLine extends Component {
 }
 
 const styles = StyleSheet.create({
-
    lineStyle:{
-     borderWidth: 0.15,
-     borderColor:'#bebdbd',
-     shadowOpacity:0.2,shadowRadius: 0,elevation: 0.2,
+       borderWidth: 0.15,
+       borderColor:'#bebdbd',
+       shadowOpacity:0.2,shadowRadius: 0,elevation: 0.2,
   },
   lineStyle1:{
-     borderWidth: 0.15,
-     borderColor:'#bebdbd',
+       borderWidth: 0.15,
+       borderColor:'#bebdbd',
 
- },
- TouchableOpacityStyle: {
-     position: 'absolute',
-     width: 45,
-     height: 45,
-     alignItems: 'center',
-     justifyContent: 'center',
-     right: 30,
-     bottom: 30,
-     backgroundColor: '#2b79b0',
-     zIndex: 1,
-     borderRadius:25,
- },
- viewDiv :{
-     paddingHorizontal:5
- }
+   },
+   TouchableOpacityStyle: {
+       position: 'absolute',
+       width: 45,
+       height: 45,
+       alignItems: 'center',
+       justifyContent: 'center',
+       right: 30,
+       bottom: 30,
+       backgroundColor: '#2b79b0',
+       zIndex: 1,
+       borderRadius:25,
+   },
+   viewDiv :{
+       paddingHorizontal:5
+   }
 });
 
 // <View style={[styles.lineStyle1]}></View>

@@ -114,33 +114,28 @@ export default class HomeScreen extends Component {
         componentDidMount=async()=> {
             this.getUserAsync();
             this.getCampaignData();
-
             this.state.connection.onopen = (session)=>{
-             this.setState({session : session});
-              // 1) subscribe to a topic
-
-              console.log('subscribing to' ,"erp.marketing.chat");
-
-             session.subscribe('erp.marketing.' + this.state.userdetails.username, this.callBackHandler).then(
-             (sub) => {
-               console.log("subscription done ")
-             },
-             (err) => {
-               console.log("failed to subscribe: service.support.chat"+err);
-             });
+               this.setState({session : session});
+                // 1) subscribe to a topic
+                console.log('subscribing to' ,"erp.marketing.chat");
+               session.subscribe('erp.marketing.' + this.state.userdetails.username, this.callBackHandler).then(
+               (sub) => {
+                 console.log("subscription done ")
+               },
+               (err) => {
+                 console.log("failed to subscribe: service.support.chat"+err);
+               });
            };
-
            this.state.connection.onclose = (reason, details)=> {
                console.log("Connection lost: " + reason);
             }
         }
 
         callBackHandler = (args)=>{
-          // console.log(args)
-          if(args[0].type == "call"){
-            console.log("make a call")
-            Linking.openURL('tel:${'+ args[0].data +'}')
-          }
+            if(args[0].type == "call"){
+                console.log("make a call")
+                Linking.openURL('tel:${'+ args[0].data +'}')
+            }
         }
 
         getCampaignData=async()=>{
@@ -290,9 +285,6 @@ export default class HomeScreen extends Component {
         }
 
 
-
-
-
       next=async(item)=>{
           AsyncStorage.setItem('campaignpk',JSON.stringify(item.pk))
           console.log(item.pk,"item.pk")
@@ -408,7 +400,6 @@ export default class HomeScreen extends Component {
                                                   textStyle={{color:'#188a31',fontSize:16}}/>
                                         </View>
                                   </View>
-
                                   <TouchableOpacity style={{backgroundColor:'transparent'}} onPress={()=>this.CampaingnItem(item)}>
                                         <FontAwesome name={'users'} size={22} color='#000000' style={{paddingHorizontal:10,paddingTop:width*0.045}}/>
                                   </TouchableOpacity>
@@ -418,6 +409,29 @@ export default class HomeScreen extends Component {
               </TouchableWithoutFeedback>
               )}
             />
+
+            {!this.state.keyboardOpen&&
+                   <TouchableOpacity
+                         activeOpacity={0.7}
+                         onPress={()=>this.props.navigation.navigate('NewCampaign')}
+                         style={{ position: 'absolute',
+                                  width: 45,
+                                  height: 45,
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  right: 40,
+                                  bottom: 70,
+                                  backgroundColor: '#1a689a',
+                                  zIndex: 1,
+                                  borderRadius:25,}}>
+                         {/* <FontAwesome name="calendar" size={25} color="#fff"  /> */}
+                         <FontAwesome
+                         size={25}
+                         color='#ffffff'
+                         name='plus'
+                         />
+                     </TouchableOpacity>
+              }
         </View>
     );
   }

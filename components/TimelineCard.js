@@ -214,30 +214,30 @@ export default class TimelineCard extends Component {
 const styles = StyleSheet.create({
 
    lineStyle:{
-     borderWidth: 0.15,
-     borderColor:'#bebdbd',
-     shadowOpacity:0.2,shadowRadius: 0,elevation: 0.2,
+       borderWidth: 0.15,
+       borderColor:'#bebdbd',
+       shadowOpacity:0.2,shadowRadius: 0,elevation: 0.2,
   },
   lineStyle1:{
-     borderWidth: 0.15,
-     borderColor:'#bebdbd',
+       borderWidth: 0.15,
+       borderColor:'#bebdbd',
 
- },
- TouchableOpacityStyle: {
-     position: 'absolute',
-     width: 45,
-     height: 45,
-     alignItems: 'center',
-     justifyContent: 'center',
-     right: 30,
-     bottom: 30,
-     backgroundColor: '#2b79b0',
-     zIndex: 1,
-     borderRadius:25,
- },
- viewDiv :{
-     paddingHorizontal:5
- }
+  },
+  TouchableOpacityStyle: {
+       position: 'absolute',
+       width: 45,
+       height: 45,
+       alignItems: 'center',
+       justifyContent: 'center',
+       right: 30,
+       bottom: 30,
+       backgroundColor: '#2b79b0',
+       zIndex: 1,
+       borderRadius:25,
+   },
+   viewDiv :{
+       paddingHorizontal:5
+   }
 });
 
 // <View style={[styles.lineStyle1]}></View>

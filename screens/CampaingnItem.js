@@ -289,22 +289,22 @@ export default class CampaingnItem extends Component {
 const styles = StyleSheet.create({
 
    lineStyle:{
-    borderWidth: 0.3,
-    borderColor:'#b0b0b0',
-    paddingLeft:120,
+        borderWidth: 0.3,
+        borderColor:'#b0b0b0',
+        paddingLeft:120,
   },
-TouchableOpacityStyle: {
-   position: 'absolute',
-   width: 45,
-   height: 45,
-   alignItems: 'center',
-   justifyContent: 'center',
-   right: 30,
-   bottom: 30,
-   backgroundColor: '#2b79b0',
-   zIndex: 1,
-   borderRadius:25,
- },
+  TouchableOpacityStyle: {
+       position: 'absolute',
+       width: 45,
+       height: 45,
+       alignItems: 'center',
+       justifyContent: 'center',
+       right: 30,
+       bottom: 30,
+       backgroundColor: '#2b79b0',
+       zIndex: 1,
+       borderRadius:25,
+   },
 });
 
   // <Foundation name={'graph-bar'} size={22} color='#000000' style={{paddingHorizontal:10,paddingTop:width*0.045}}/>
